@@ -23,7 +23,7 @@
 
 ```yarn test```
 
-# 🐛 Bugs
+# 🐛 Bugs or issues
 If you have any problems executing this project, please contact me here or at tuliosantos@gee.inatel.br
 
 </br>
