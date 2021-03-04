@@ -4,7 +4,7 @@ import request from 'supertest'
 import Planet from '../src/schema/Planet';
 import app from '../src/app';
 
-describe('Planet', () => {
+describe('Test for Planet Controller', () => {
   beforeAll(async () => {
     await mongoose.connect('mongodb://localhost/B2W_StarWars_test', {
       useNewUrlParser: true,
