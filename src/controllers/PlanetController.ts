@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios  from 'axios';
 import { Request, Response } from 'express';
 
 import Planet from '../schema/Planet';
@@ -6,6 +6,10 @@ import Planet from '../schema/Planet';
 class PlanetController {
   async create(request: Request, response: Response) {
     const { name, climate, terrain } = request.body;
+
+    if(!name || !climate || !terrain) {
+      return response.status(400).send('Required param missing!')
+    }
 
     const formattedName = name.charAt(0).toUpperCase() + name.slice(1);
 

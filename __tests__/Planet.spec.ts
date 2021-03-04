@@ -18,6 +18,30 @@ describe('Planet', () => {
     await mongoose.connection.close();
   });
 
+  it('Should return 400 if no name is provided', async() => {
+    const response = await request(app).post('/planets').send({
+      climate: 'arid',
+      terrain: 'desert'
+    })
+    expect(response.status).toBe(400)
+  });
+
+  it('Should return 400 if no climate is provided', async() => {
+    const response = await request(app).post('/planets').send({
+      name: 'Tatooine',
+      terrain: 'desert'
+    })
+    expect(response.status).toBe(400)
+  });
+
+  it('Should return 400 if no terrain is provided', async() => {
+    const response = await request(app).post('/planets').send({
+      name: 'Tatooine',
+      climate: 'arid',
+    })
+    expect(response.status).toBe(400)
+  });
+
   it('should be able to create a new Planet', async () => {
     const response = await request(app).post('/planets').send({
       name: 'Tatooine',
