@@ -21,7 +21,7 @@
 
 **Run tests**
 
-```yarn jest```
+```yarn test```
 
 # 🐛 Bugs
 If you have any problems executing this project, please contact me here or at tuliosantos@gee.inatel.br
