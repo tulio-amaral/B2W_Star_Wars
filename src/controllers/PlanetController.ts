@@ -8,19 +8,17 @@ class PlanetController {
     const { name, climate, terrain } = request.body;
 
     if(!name || !climate || !terrain) {
-      return response.status(400).send('Required param missing!')
+      return response.status(400).json('Required param missing!')
     }
 
     const formattedName = name.charAt(0).toUpperCase() + name.slice(1);
 
     const alreadyCreated = await Planet.findOne({ name: formattedName });
 
-    console.log(alreadyCreated);
-
     if(alreadyCreated) {
       return response.status(400).send('Planet already created!');
     };
-
+    //Requisição a API do Star Wars
     const { data } = await axios(`https://swapi.dev/api/planets/?search=${formattedName}`);
 
     const appearances = data.results[0].films.length;
@@ -34,11 +32,13 @@ class PlanetController {
 
     return response.json(planet);
   }
+
   async list(request: Request, response: Response) {
     const planets = await Planet.find();
 
     return response.json(planets);
   }
+
   async findByName(request: Request, response: Response) {
     const { name } = request.query;
 
@@ -48,6 +48,7 @@ class PlanetController {
 
     return response.json(planet);
   }
+
   async findByID(request: Request, response: Response) {
     const { _id } = request.params;
 
@@ -55,6 +56,7 @@ class PlanetController {
 
     return response.json(planet);
   }
+
   async remove(request: Request, response: Response) {
     const { _id } = request.params;
 
