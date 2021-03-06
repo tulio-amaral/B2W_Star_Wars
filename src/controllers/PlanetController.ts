@@ -18,6 +18,8 @@ class PlanetController {
     if(alreadyCreated) {
       return response.status(400).send('Planet already created!');
     };
+
+    try{
     //Requisição a API do Star Wars
     const { data } = await axios(`https://swapi.dev/api/planets/?search=${formattedName}`);
 
@@ -31,6 +33,10 @@ class PlanetController {
     });
 
     return response.json(planet);
+    } catch {
+      return response.status(404).json('Planet not found!');
+    }
+
   }
 
   async list(request: Request, response: Response) {
