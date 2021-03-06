@@ -52,6 +52,16 @@ describe('Test for Planet Controller', () => {
     expect(response.status).toBe(200);
   });
 
+  it('should return an error if a given name is registered at the SWAPI', async() => {
+    const response = await request(app).post('/planets').send({
+      name: 'Not registered name',
+      climate: 'arid',
+      terrain: 'desert'
+    });
+
+    expect(response.status).toBe(404);
+  })
+
   it('Should not be able to create with an already used name', async() => {
     const response = await request(app).post('/planets').send({
       name: 'Tatooine',
@@ -59,7 +69,7 @@ describe('Test for Planet Controller', () => {
       terrain: 'desert'
     });
 
-    expect(response.status).toBe(400)
+    expect(response.status).toBe(400);
   });
 
   it('Should be able to find all planets', async() => {
