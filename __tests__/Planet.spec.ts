@@ -52,7 +52,7 @@ describe('Test for Planet Controller', () => {
     expect(response.status).toBe(200);
   });
 
-  it('should return an error if a given name is registered at the SWAPI', async() => {
+  it('should return an error if a given name is not registered at the SWAPI', async() => {
     const response = await request(app).post('/planets').send({
       name: 'Not registered name',
       climate: 'arid',
